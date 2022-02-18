@@ -77,7 +77,7 @@ public class PostControllerIT {
 
 	// Post creation.
 	UserDTO user = UserDTO.builder().firstName("Blaise").lastName("Pascal").emailAddress("blaise.pascal@gmail.com")
-		.userId("AHhhhhookk").build();
+		.build();
 	PostDTO postCreate = PostDTO.builder().content("ABC").user(user).build();
 
 	// sending the request.

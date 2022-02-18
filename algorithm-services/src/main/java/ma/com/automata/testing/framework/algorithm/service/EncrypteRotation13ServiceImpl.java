@@ -1,5 +1,6 @@
 package com.automata.testing.framework.algorithm.service;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,57 +22,52 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EncrypteRotation13ServiceImpl implements IEncryptionService {
 
-    // -------------------------------------- Inner classes
+	// -------------------------------------- Inner classes
 
-    // -------------------------------------- public static attributes
+	// -------------------------------------- public static attributes
 
-    // -------------------------------------- private static attributes
-    
-    /**
-     * Storing the last character we handled.
-     */
-    private String CHAR_RESULT = null;
+	// -------------------------------------- private static attributes
 
-    // -------------------------------------- private attributes
+	/**
+	 * Storing the last character we handled.
+	 */
+	private String CHAR_RESULT = null;
 
-    // -------------------------------------- public attributes
+	// -------------------------------------- private attributes
 
-    // -------------------------------------- Constructor
+	// -------------------------------------- public attributes
 
-    // -------------------------------------- Public static methods
+	// -------------------------------------- Constructor
 
-    // -------------------------------------- Private static methods
+	// -------------------------------------- Public static methods
 
-    // -------------------------------------- Private methods
+	// -------------------------------------- Private static methods
 
-    // -------------------------------------- Protected methods
+	// -------------------------------------- Private methods
 
-    // -------------------------------------- Public methods
+	// -------------------------------------- Protected methods
 
+	// -------------------------------------- Public methods
 
-    @Override
-    public String encode(String input) {
-	for (int i = 0 ; i <= input.toUpperCase().length() ; i++ ) {
-	    if (i == 0) {
-		continue;
-	    }
-	    char c = input.charAt(i - 1);
-	    char res = c;
-	    if (Character.isAlphabetic(c)) {
-		res =  (char) ((c + 13)) ;
-	    }
-	    log.info("Result is {}", res);
-	    if (CHAR_RESULT == null) {
-		CHAR_RESULT = "";
-	    }
-	    CHAR_RESULT = CHAR_RESULT + res;
+	@Override
+	public synchronized String encode(String input) {
+		CHAR_RESULT = null;
+		for (int i = 1; i <= input.toUpperCase().length(); i++) {
+			char c = input.charAt(i - 1);
+			char res = c;
+			if (Character.isAlphabetic(c)) {
+				res = (char) ((c + 13));
+			}
+//			log.info("Result is {}", res);
+			if (CHAR_RESULT == null) {
+				CHAR_RESULT = "";
+			}
+			CHAR_RESULT = CHAR_RESULT + res;
+		}
+		String res = CHAR_RESULT;
+		return res;
 	}
-	String res = CHAR_RESULT;
-	CHAR_RESULT = null;
-	return res;
-    }
 
-
-    // -------------------------------------- Setters and Getters
+	// -------------------------------------- Setters and Getters
 
 }

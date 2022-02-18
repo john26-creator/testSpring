@@ -61,7 +61,7 @@ public class PostEntity implements Serializable {
     /**
      * The user id.
      */
-    private String userId;
+    private Integer userId;
 
     /**
      * The user first name.

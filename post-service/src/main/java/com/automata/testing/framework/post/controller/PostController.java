@@ -89,4 +89,9 @@ public class PostController {
 
     // -------------------------------------- Setters and Getters
 
+    
+    @PostMapping(path = "/user/delete/{id}")
+	public void deleteUser(@PathVariable(name = "identifier") Integer id) {
+    	postService.deletePost(id);
+	}
 }

@@ -23,67 +23,74 @@ import com.automata.testing.framework.algorithm.service.IEncryptionService;
  * @author GELIBERT
  */
 @SpringBootTest(classes = EncrypteRotation13ServiceImpl.class)
-public class EncryptionManagementUT {
+public class EncryptionManagementUTest {
 
-    // -------------------------------------- Inner classes
+	// -------------------------------------- Inner classes
 
-    // -------------------------------------- public static attributes
+	// -------------------------------------- public static attributes
 
-    // -------------------------------------- private static attributes
+	// -------------------------------------- private static attributes
 
-    // -------------------------------------- private attributes
-    
-    /**
-     * Encryption service to use.
-     */
-    private IEncryptionService encryptionService;
-    
-    /**
-     * Decryption service to use.
-     */
-    private IDecryptionService decryptionService;
+	// -------------------------------------- private attributes
 
-    // -------------------------------------- public attributes
+	/**
+	 * Encryption service to use.
+	 */
+	private IEncryptionService encryptionService;
 
-    // -------------------------------------- Constructor
+	/**
+	 * Decryption service to use.
+	 */
+	private IDecryptionService decryptionService;
 
-    // -------------------------------------- Public static methods
+	// -------------------------------------- public attributes
 
-    // -------------------------------------- Private static methods
+	// -------------------------------------- Constructor
 
-    // -------------------------------------- Private methods
+	// -------------------------------------- Public static methods
 
-    // -------------------------------------- Protected methods
+	// -------------------------------------- Private static methods
 
-    // -------------------------------------- Public methods
-    
-    /**
-     * Testing the ROT 13 Algorithm.
-     */
-    @Test
-    public void iDontKnowTest() {
+	// -------------------------------------- Private methods
+
+	// -------------------------------------- Protected methods
+
+	// -------------------------------------- Public methods
+
 	
-	// Testing with data ABC, that should be changed in NOP
-	String res = encryptionService.encode("ABC");
-	
-	Assertions.assertEquals("NOP", res);
-	
-	res = encryptionService.encode("XYZ");
-	Assertions.assertEquals("efg", res);
-	
-    }
-    
-    /**
-     * Testing Synchronous encoding and decoding.
-     */
-    @Test
-    public void iDontKnowTest2() {
-	
-	// Testing the decoding algorithm.
-	String toTest = RandomStringUtils.randomAlphabetic(30).toUpperCase();
-	Assertions.assertEquals(toTest, decryptionService.decode(encryptionService.encode(toTest)));
-    }
+	/**
+	 * Testing the ROT 13 Algorithm.
+	 */
+	@Test
+	public void iDontKnowTest() {
+		encryptionService = new EncrypteRotation13ServiceImpl();
+		// Testing with data ABC, that should be changed in NOP
+		String res = encryptionService.encode("ABC");
 
-    // -------------------------------------- Setters and Getters
+		Assertions.assertEquals("NOP", res);
+
+		res = encryptionService.encode("XYZ");
+		Assertions.assertEquals("efg", res);
+
+	}
+
+	/**
+	 * Testing Synchronous encoding and decoding.
+	 */
+	@Test
+	public void iDontKnowTest2() {
+		encryptionService = new EncrypteRotation13ServiceImpl();
+		decryptionService = new DecrypteRotation13ServiceImpl();
+		// Testing the decoding algorithm.
+		String toTest = RandomStringUtils.randomAlphabetic(30).toUpperCase();
+		System.out.println("totTest : " + toTest);
+		String encrypted = encryptionService.encode(toTest);
+		System.out.println("encrypted : " + encrypted);
+		String decrypted = decryptionService.decode(encrypted);
+		System.out.println("decrypted : " + decrypted);
+		Assertions.assertEquals(toTest, decrypted);
+	}
+
+	// -------------------------------------- Setters and Getters
 
 }

@@ -38,12 +38,12 @@
 
 		<!-- Internal dependency -->
 		<dependency>
-			<groupId>com.automata.testing.framework</groupId>
+			<groupId>com.automata.testing.framework.commons</groupId>
 			<artifactId>automata-commons</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.automata.testing.framework</groupId>
+			<groupId>ma.com.automata.testing.framework</groupId>
 			<artifactId>algorithm-services</artifactId>
 			<version>${project.version}</version>
 		</dependency>

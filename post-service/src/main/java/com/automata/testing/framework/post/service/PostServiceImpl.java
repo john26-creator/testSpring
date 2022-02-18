@@ -71,5 +71,8 @@ public class PostServiceImpl implements IPostService {
     }
 
     // -------------------------------------- Setters and Getters
-
+	@Override
+	public void deletePost(Integer id) {
+		postRepo.deleteById(id);		
+	}
 }

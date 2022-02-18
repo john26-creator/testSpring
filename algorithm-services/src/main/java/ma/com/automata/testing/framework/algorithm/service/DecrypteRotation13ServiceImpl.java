@@ -18,35 +18,48 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DecrypteRotation13ServiceImpl implements IDecryptionService {
 
-    // -------------------------------------- Inner classes
+	private String CHAR_RESULT = null;
+	// -------------------------------------- Inner classes
 
-    // -------------------------------------- public static attributes
+	// -------------------------------------- public static attributes
 
-    // -------------------------------------- private static attributes
+	// -------------------------------------- private static attributes
 
-    // -------------------------------------- private attributes
+	// -------------------------------------- private attributes
 
-    // -------------------------------------- public attributes
+	// -------------------------------------- public attributes
 
-    // -------------------------------------- Constructor
+	// -------------------------------------- Constructor
 
-    // -------------------------------------- Public static methods
+	// -------------------------------------- Public static methods
 
-    // -------------------------------------- Private static methods
+	// -------------------------------------- Private static methods
 
-    // -------------------------------------- Private methods
+	// -------------------------------------- Private methods
 
-    @Override
-    public String decode(String input) {
-	System.out.println("Input is " + input);
-	// TODO Implement this method
-	return null;
-    }
+	@Override
+	public String decode(String input) {
+		CHAR_RESULT = null;
+		for (int i = 1; i <= input.toUpperCase().length(); i++) {
+			char c = input.charAt(i - 1);
+			char res = c;
+			if (Character.isAlphabetic(c)) {
+				res = (char) ((c - 13));
+			}
+//			log.info("Result is {}", res);
+//			if (CHAR_RESULT == null) {
+//				CHAR_RESULT = "";
+//			}
+			CHAR_RESULT = CHAR_RESULT + res;
+		}
+		String res = CHAR_RESULT;
+		return res;
+	}
 
-    // -------------------------------------- Protected methods
+	// -------------------------------------- Protected methods
 
-    // -------------------------------------- Public methods
+	// -------------------------------------- Public methods
 
-    // -------------------------------------- Setters and Getters
+	// -------------------------------------- Setters and Getters
 
 }

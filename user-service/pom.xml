@@ -38,7 +38,7 @@
 		
 		<!-- Internal dependency -->
 		<dependency>
-			<groupId>com.automata.testing.framework</groupId>
+			<groupId>ma.com.automata.testing.framework</groupId>
 			<artifactId>algorithm-services</artifactId>
 			<version>${project.version}</version>
 		</dependency>
