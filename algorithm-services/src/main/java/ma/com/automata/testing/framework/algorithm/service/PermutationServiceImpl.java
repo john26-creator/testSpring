@@ -28,7 +28,7 @@ public class PermutationServiceImpl implements IPermutationService {
 			return permutEven(input);
 		}
 		else {
-			return permutEven(input)+"X";
+			return permutEven(input)+ (input.charAt(input.length()-1) + 13);
 		}
 	}
 	
