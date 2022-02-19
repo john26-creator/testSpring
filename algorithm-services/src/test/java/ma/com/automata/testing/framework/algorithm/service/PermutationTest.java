@@ -9,9 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.automata.testing.framework.algorithm.service.EncrypteRotation13ServiceImpl;
-import com.automata.testing.framework.algorithm.service.IDecryptionService;
-import com.automata.testing.framework.algorithm.service.IEncryptionService;
+import com.automata.testing.framework.algorithm.service.PermutationServiceImpl;
+import com.automata.testing.framework.algorithm.service.IPermutationService;
 
 /**
  * Dependencies
@@ -22,8 +21,8 @@ import com.automata.testing.framework.algorithm.service.IEncryptionService;
  * 
  * @author GELIBERT
  */
-@SpringBootTest(classes = EncrypteRotation13ServiceImpl.class)
-public class EncryptionManagementUTest {
+@SpringBootTest(classes = PermutationServiceImpl.class)
+public class PermutationTest {
 
 	// -------------------------------------- Inner classes
 
@@ -34,14 +33,10 @@ public class EncryptionManagementUTest {
 	// -------------------------------------- private attributes
 
 	/**
-	 * Encryption service to use.
+	 * Permutation service to use.
 	 */
-	private IEncryptionService encryptionService;
+	private IPermutationService permutationService;
 
-	/**
-	 * Decryption service to use.
-	 */
-	private IDecryptionService decryptionService;
 
 	// -------------------------------------- public attributes
 
@@ -62,15 +57,12 @@ public class EncryptionManagementUTest {
 	 * Testing the ROT 13 Algorithm.
 	 */
 	@Test
-	public void iDontKnowTest() {
-		encryptionService = new EncrypteRotation13ServiceImpl();
+	public void permutEvenTest() {
 		// Testing with data ABC, that should be changed in NOP
-		String res = encryptionService.encode("ABC");
+		permutationService = new PermutationServiceImpl ();
+		String res = permutationService.permutEven("KAYA");
 
-		Assertions.assertEquals("NOP", res);
-
-		res = encryptionService.encode("XYZ");
-		Assertions.assertEquals("efg", res);
+		Assertions.assertEquals("AKAY", res);
 
 	}
 
@@ -78,14 +70,11 @@ public class EncryptionManagementUTest {
 	 * Testing Synchronous encoding and decoding.
 	 */
 	@Test
-	public void iDontKnowTest2() {
-		encryptionService = new EncrypteRotation13ServiceImpl();
-		decryptionService = new DecrypteRotation13ServiceImpl();
-		// Testing the decoding algorithm.
-		String toTest = RandomStringUtils.randomAlphabetic(30).toUpperCase();
-		String encrypted = encryptionService.encode(toTest);
-		String decrypted = decryptionService.decode(encrypted);
-		Assertions.assertEquals(toTest, decrypted);
+	public void permutOddTest() {
+		permutationService = new PermutationServiceImpl ();
+		String res = permutationService.permutOdd("KAYAK");
+
+		Assertions.assertEquals("AKAYX", res);
 	}
 
 	// -------------------------------------- Setters and Getters

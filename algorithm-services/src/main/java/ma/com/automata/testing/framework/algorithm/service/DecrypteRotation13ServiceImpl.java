@@ -18,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DecrypteRotation13ServiceImpl implements IDecryptionService {
 
-	private String CHAR_RESULT = null;
 	// -------------------------------------- Inner classes
 
 	// -------------------------------------- public static attributes
@@ -38,22 +37,21 @@ public class DecrypteRotation13ServiceImpl implements IDecryptionService {
 	// -------------------------------------- Private methods
 
 	@Override
-	public String decode(String input) {
-		CHAR_RESULT = null;
-		for (int i = 1; i <= input.toUpperCase().length(); i++) {
-			char c = input.charAt(i - 1);
-			char res = c;
-			if (Character.isAlphabetic(c)) {
-				res = (char) ((c - 13));
-			}
-//			log.info("Result is {}", res);
-//			if (CHAR_RESULT == null) {
-//				CHAR_RESULT = "";
-//			}
-			CHAR_RESULT = CHAR_RESULT + res;
+	public String decode(String inputs) {
+		char[] inputArray = inputs.toCharArray();
+		return decodeInputs (inputArray);
+	}
+	
+	private String decodeInputs (char [] input) {
+		for (int i = 0; i < input.length; i++) {
+			char currentChar = input[i];
+			input[i] = decodeChar(currentChar);
 		}
-		String res = CHAR_RESULT;
-		return res;
+		return new String(input);
+	}
+	
+	private char decodeChar (char currentChar) {
+		return (char) ((currentChar - 13));
 	}
 
 	// -------------------------------------- Protected methods

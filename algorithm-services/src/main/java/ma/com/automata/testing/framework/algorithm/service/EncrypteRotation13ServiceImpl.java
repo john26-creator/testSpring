@@ -28,11 +28,6 @@ public class EncrypteRotation13ServiceImpl implements IEncryptionService {
 
 	// -------------------------------------- private static attributes
 
-	/**
-	 * Storing the last character we handled.
-	 */
-	private String CHAR_RESULT = null;
-
 	// -------------------------------------- private attributes
 
 	// -------------------------------------- public attributes
@@ -49,25 +44,30 @@ public class EncrypteRotation13ServiceImpl implements IEncryptionService {
 
 	// -------------------------------------- Public methods
 
-	@Override
-	public synchronized String encode(String input) {
-		CHAR_RESULT = null;
-		for (int i = 1; i <= input.toUpperCase().length(); i++) {
-			char c = input.charAt(i - 1);
-			char res = c;
-			if (Character.isAlphabetic(c)) {
-				res = (char) ((c + 13));
-			}
-//			log.info("Result is {}", res);
-			if (CHAR_RESULT == null) {
-				CHAR_RESULT = "";
-			}
-			CHAR_RESULT = CHAR_RESULT + res;
-		}
-		String res = CHAR_RESULT;
-		return res;
-	}
 
+	@Override
+	public String encode(String inputs) {
+		inputs = inputs.toUpperCase();
+		char[] inputArray = inputs.toCharArray();
+		
+		return encodeInputs (inputArray);
+	}
+	
+	private String encodeInputs (char [] input) {
+		
+		for (int i = 0; i < input.length; i++) {
+			char currentChar = input[i];
+			
+			if (Character.isAlphabetic(currentChar)) {
+				input[i] = encodeChar (currentChar);
+			}
+		}
+		return new String(input);
+	}
+	
+	private char encodeChar (char currentChar) {
+		return (char) ((currentChar + 13));
+	}
 	// -------------------------------------- Setters and Getters
 
 }
